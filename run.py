@@ -45,12 +45,12 @@ try:
 except IndexError:
   badUsage(sys.argv[0])
 
-print('Arguments:')
-print('noReg %s' % noReg)
-print('dateOfBirth %s' % dateOfBirth)
-print('fromDate %s' % fromDate)
-print('endDate %s' % endDate)
-print('wirepusher_id %s' % wirepusher_id)
+print('Script options successfully loaded.')
+print('\tnoReg = %s' % noReg)
+print('\tdateOfBirth = %s' % dateOfBirth)
+print('\tfromDate = %s' % fromDate)
+print('\tendDate = %s' % endDate)
+print('\twirepusher_id = %s' % wirepusher_id)
 
 # sys.exit()
 
@@ -68,20 +68,21 @@ while availability is None:
   availability = cari.serachAvailability(driver=driver)
 
 driver.close()
-avaStr = 'Disponibilit trouvée pour le ' + availability.strftime('%d.%m.%Y %H:%M')
+avaStr = 'Availability found for ' + availability.strftime('%d.%m.%Y %H:%M') + '. Run and book the date!'
 print(avaStr)
 
 if availability > fromDate and availability < endDate:
-  print('Dans les temps')
+  print('An availability was found on desired a date.')
   r = requests.post('https://wirepusher.com/send', data={'id': wirepusher_id, 'title': 'Cari-check: Trouvé', 'message': avaStr, 'type': 'Important', 'action': config.cari_url})
   if r.status_code == 200:
-    print('Notif envoyée')
+    print('Notification sent.')
+  else:
+    print('Error when sending notification.')
 else:
-  print('Pas dans les temps')
-  r = requests.post('https://wirepusher.com/send', data={'id': wirepusher_id, 'title': 'Cari-check: Pas trouvée', 'message': avaStr, 'action': config.cari_url})
-  print(r)
-  if r.status_code == 200:
-    print('Notif envoyée')
-
+  print(f'No availability found on desired dates (from {fromDate} to {endDate}).')
+  # r = requests.post('https://wirepusher.com/send', data={'id': wirepusher_id, 'title': 'Cari-check: Pas trouvée', 'message': avaStr, 'action': config.cari_url})
+  # print(r)
+  # if r.status_code == 200:
+  #   print('Notif envoyée')
 
 sys.exit(0)
