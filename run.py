@@ -60,8 +60,7 @@ driver = webdriver.Chrome(driver_filename)
 
 cari.login(driver=driver, noReg=noReg, dateOfBirth=dateOfBirth)
 
-driver.get(f'{config.cari_url}?pageContext=selectExamens&action=move&item=20190705111541088')
-
+cari.changeDate(driver=driver)
 
 availability = cari.serachAvailability(driver=driver)
 while availability is None:

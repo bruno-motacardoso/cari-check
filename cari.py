@@ -4,6 +4,10 @@ import datetime
 import config
 
 
+def changeDate(driver):
+  changeLink = driver.find_element_by_link_text('Déplacer')
+  changeLink.click()
+
 def login(driver, noReg, dateOfBirth):
   driver.get(config.cari_url)
 
