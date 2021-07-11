@@ -21,6 +21,15 @@ I use the following versions of chrome and chromedriver:
 - Chrome version 91
 - Chrome Driver version 91
 
+# Usage
+```
+python run.py noReg dateOfBirth fromDate endDate wirepusher_id
+```
+- noReg : is your people number (used to authenticate)
+- dateOfBirth : your date of birth (used to authenticate)
+- fromDate : the start date of your desired dates
+- endDate : the end date of your desired dates
+- wirepusher_id : the id of wirepusher (app to install on your smartphone) to send notification
 # Improvements to do
 - Be able to send notifications on ios, it seems that wirepusher is not available on ios.
 - Dockerize? the application to can be scheduled on a cloud. Like a serveless app with lower costs.
