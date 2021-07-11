@@ -73,12 +73,12 @@ print(avaStr)
 
 if availability > fromDate and availability < endDate:
   print('Dans les temps')
-  r = requests.post(f'{wirepusher_id}/send', data={'id': wirepusher_id, 'title': 'Cari-check: Trouvé', 'message': avaStr, 'type': 'Important', 'action': config.cari_login_url})
+  r = requests.post('https://wirepusher.com/send', data={'id': wirepusher_id, 'title': 'Cari-check: Trouvé', 'message': avaStr, 'type': 'Important', 'action': config.cari_url})
   if r.status_code == 200:
     print('Notif envoyée')
 else:
   print('Pas dans les temps')
-  r = requests.post(f'{wirepusher_id}/send', data={'id': wirepusher_id, 'title': 'Cari-check: Pas trouvée', 'message': avaStr, 'action': config.cari_login_url})
+  r = requests.post('https://wirepusher.com/send', data={'id': wirepusher_id, 'title': 'Cari-check: Pas trouvée', 'message': avaStr, 'action': config.cari_url})
   print(r)
   if r.status_code == 200:
     print('Notif envoyée')
