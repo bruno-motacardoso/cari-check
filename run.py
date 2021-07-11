@@ -41,7 +41,7 @@ except IndexError:
   badUsage(sys.argv[0])
 
 try:
-  wirepusher_id = sys.argv[5], '%d.%m.%Y'
+  wirepusher_id = sys.argv[5]
 except IndexError:
   badUsage(sys.argv[0])
 
